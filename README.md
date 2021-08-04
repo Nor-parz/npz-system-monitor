@@ -15,6 +15,9 @@ Npz System Monitor は、CPU, RAMの使用量/使用率、ディスクの読み�
 ・[**Installer**](https://raw.githubusercontent.com/Nor-parz/npz-system-monitor/installer/Changelog.txt)
 
 ---
+### [ウェブサイト](https://milkeyyy.github.io/software/npz-system-monitor/main)
+
+---
 **プログラミング言語: プロデル** (https://rdr.utopiat.net/)
 
 `Copyright 2021 Nor <parz>`
