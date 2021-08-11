@@ -1,3 +1,6 @@
+GPU合計値={}
+回数=0
+GPU値反映=○
 
 メイン画面を表示する
 値取得する
@@ -30,17 +33,32 @@
 終わり
 
 値取得する手順
+	取得スレッドというスレッドを作る
+	取得スレッドで『
 	繰り返す
-		WMIから「SELECT * FROM Win32_PerfFormattedData_GPUPerformanceCounters_GPUEngine」で取得してwmi_PerfFormattedData_GPUPerformanceCounters_GPUEngineリストとする
+		WMIから「SELECT UtilizationPercentage FROM Win32_PerfFormattedData_GPUPerformanceCounters_GPUEngine」で取得してwmi_PerfFormattedData_GPUPerformanceCounters_GPUEngineリストとする
 		wmi_PerfFormattedData_GPUPerformanceCounters_GPUEngineリストのすべてのオブジェクトについてそれぞれ繰り返す
 			オブジェクトのすべての要素についてそれぞれ繰り返す
 				もし要素の名前が「UtilizationPercentage」なら
-					GPU値=GPU値+要素の値/1.25
+					GPU合計値へ要素の値を追加する
 				もし終わり
-			繰り返し終わり	
+			繰り返し終わり
 		繰り返し終わり
-		メイン画面のラベル1の内容を[GPU値を「0」に整えたもの]に変える
-		GPU値=0
+		もしGPU値反映が○ならメイン画面のラベル1の内容を[GPU合計値の合計]に変える
+		GPU合計値={}
+		回数=0
 		0.5秒待つ
-	繰り返し終わり
+	繰り返し終わり』を実行する
+	
+	反映スレッドというスレッドを作る
+	反映スレッドで『
+	繰り返す
+		GPU値反映について分岐
+		○の場合
+			GPU値反映=×
+		×の場合
+			GPU値反映=○
+		分岐終わり
+	0.5秒待つ
+	繰り返し終わり』を実行する
 終わり
